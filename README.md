@@ -112,11 +112,13 @@ We expect our students to conduct themselves professionally, at least, for the f
     
 ## Exams
 - Midterm exam
-  - Cover the content of week 1 - 8
+  - Cover the content of week 1 - 7
   - Count 40% toward final score
+  - Open book
 - Final exam
-  - Cover the content of week 9 - 15
+  - Cover the content of week 8 - 14
   - Count 40% toward final score
+  - Open book
    
 ## Semester Letter Grade Rubrics
 
