@@ -16,10 +16,15 @@ This course introduces the theoretical and practical views of parallel programmi
 
 # Course Topics
 **Week 1: Introduction and state of the art of parallel processing and distributed systems.**
-- TBA
+- Slide: Week 1 Introduction
+- Intro to Parallel, Distributed and Concurrent Computing
+- Parallelism
+- State of the art
 
 **Week 2: Parallel processing, architectures, paradigms and issues**
-- TBA
+- Slide: Week 2 Paradim and Issues
+- Paradgim
+- Issues
 
 **Week 3: Massage passing and shared memory**
 - TBA
