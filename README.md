@@ -20,6 +20,7 @@ This course introduces the theoretical and practical views of parallel programmi
 - Intro to Parallel, Distributed and Concurrent Computing
 - Parallelism
 - State of the art
+- Class Progress: (7/1/2562) Slide 1 done.
 
 **Week 2: Parallel processing, architectures, paradigms and issues**
 - Slide: Week 2 Paradim and Issues
@@ -92,8 +93,8 @@ We expect our students to conduct themselves professionally, at least, for the f
 
 ## Making Up Missed Classes
 - Whether excused or unexcused absence, missed classes must be made up in order to earn a grade of B or higher for the semester
-- To make up a class, students study the slide, work any in-class exercises on their own, write up an executive summary, and submit the executive summary to the instructor using a Microsoft team on email before the next class meeting start time
-- Executive Summary should be a PDF file, 1 to 1.5 pages in length, professionally formatted,12 point Calibri font, 1 inch margins, 1.08 line spacing
+- To make up a class, students study the slide, work any in-class exercises on their own, write up an executive summary, and submit the executive summary to the instructor using CMU Elearning or email (pruet@eng.cmu.ac.th) before the next class meeting start time
+- Executive Summary should be a PDF file, 1 to 1.5 pages in length, professionally formatted,12 point font.
 
 ## Assignments
 - 8 Assignments, count as 20% toward final score
