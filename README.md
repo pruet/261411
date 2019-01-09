@@ -74,8 +74,8 @@ None
 1. Topics in Parallel and Distributed Computing: Introducing Concurrency in Undergraduate Courses,  Sushil K Prasad (Editor), Anshul Gupta (Editor), Arnold L Rosenberg (Editor), Alan Sussman (Editor), Charles C Weems (Editor), Morgan Kaufmann, 2015
 2. Distributed Systems: Principles and Paradigms, Andrew S. Tanenbaum and Maarten van Steen,  Prentice Hall, 2002
 
-# Required and Recommended Reading
-TBA
+# Recommended Reading
+1. Multicore vs. SMP [1](https://software.intel.com/en-us/blogs/2008/04/17/the-difference-between-multi-core-and-multi-processing), [2](http://pediaa.com/difference-between-multicore-and-multiprocessor/)
 
 # Grading Rubrics
 ## Professional Conduct
