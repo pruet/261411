@@ -71,7 +71,7 @@ This course introduces the theoretical and practical views of parallel programmi
 None
 
 ## Recommended Textbooks
-1. Topics in Parallel and Distributed Computing: Introducing Concurrency in Undergraduate Courses,  Sushil K Prasad (Editor), Anshul Gupta (Editor), Arnold L Rosenberg (Editor), Alan Sussman (Editor), Charles C Weems (Editor), Morgan Kaufmann, 2015
+1. [Topics in Parallel and Distributed Computing: Introducing Concurrency in Undergraduate Courses](https://grid.cs.gsu.edu/~tcpp/curriculum/?q=cedr_book),  Sushil K Prasad (Editor), Anshul Gupta (Editor), Arnold L Rosenberg (Editor), Alan Sussman (Editor), Charles C Weems (Editor), Morgan Kaufmann, 2015
 2. Distributed Systems: Principles and Paradigms, Andrew S. Tanenbaum and Maarten van Steen,  Prentice Hall, 2002
 
 # Recommended Reading
