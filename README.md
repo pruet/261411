@@ -14,6 +14,9 @@ This course introduces the theoretical and practical views of parallel programmi
 3. Some math knowledge (matrix, linear algebra, no calculus)
 4. Basic algorithm and data structure
 
+# Attendance Sheet
+[Please see it here](https://o365cmu-my.sharepoint.com/:x:/g/personal/pruet_b_cmu_ac_th/ETWEX_IxxqxCqQHmZtbYkHsBmfWe0A6hkvfwZDVKAi7zug?e=sliHJV)
+
 # Course Topics
 **Week 1: Introduction and state of the art of parallel processing and distributed systems.**
 - Slide: Week 1 Introduction
