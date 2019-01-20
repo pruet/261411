@@ -29,9 +29,17 @@ This course introduces the theoretical and practical views of parallel programmi
 - Slide: Week 2 Paradim and Issues
 - Paradgim
 - Issues
+- Class progress: (10/1/2562 - 14/1/2562) Slide 2 done
 
 **Week 3: Massage passing and shared memory**
-- TBA
+- Slide: Week 3 Message Passing and Shared Memory
+- Shared Memory
+- Threading
+- Synchronization
+- Class progress: (17/1/62) Slide 3 page 1 -19
+- Slide: Week 3 supplement Concurrent with Go
+- Message Passing
+- Go's Channel
 
 **Week 4: Introduction to threading**
 - TBA
