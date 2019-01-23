@@ -17,6 +17,10 @@ This course introduces the theoretical and practical views of parallel programmi
 # Attendance Sheet
 [Please see it here](https://o365cmu-my.sharepoint.com/:x:/g/personal/pruet_b_cmu_ac_th/ETWEX_IxxqxCqQHmZtbYkHsBmfWe0A6hkvfwZDVKAi7zug?e=sliHJV)
 
+# Assignments
+1. HW1 is in elearing.cmu.ac.th
+2. HW2 https://gist.github.com/pruet/07510645b41e8fc549a0996b1ad75250
+
 # Course Topics
 **Week 1: Introduction and state of the art of parallel processing and distributed systems.**
 - Slide: Week 1 Introduction
