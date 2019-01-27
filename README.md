@@ -44,9 +44,11 @@ This course introduces the theoretical and practical views of parallel programmi
 - Slide: Week 3 supplement Concurrent with Go
 - Message Passing
 - Go's Channel
-
+- Class progress: (21/1/62 - 24/1/62) Slide 3, Slide 3 supplement done
 **Week 4: Introduction to threading**
-- TBA
+- Thread Class
+- Thread Synchronization
+- Monitor/Lock/Reader,Writer Lock
 
 **Week 5: Advance threading**
 - TBA
