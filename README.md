@@ -45,16 +45,22 @@ This course introduces the theoretical and practical views of parallel programmi
 - Message Passing
 - Go's Channel
 - Class progress: (21/1/62 - 24/1/62) Slide 3, Slide 3 supplement done
+
 **Week 4: Introduction to threading**
 - Thread Class
 - Thread Synchronization
 - Monitor/Lock/Reader,Writer Lock
+- Class progress: (27/1/62 - 31/1/62) Done
 
 **Week 5: Advance threading**
-- TBA
+- Thread with multi-core
+- Issues with multiple-lock
+- Class progress: (27/1/62 - 31/1/62) Done
 
 **Week 6: Operating systems of parallel processing**
-- TBA
+- OS Model
+- Thread Model
+- Thread in Popular OSes
 
 **Week 7: OpenCL Programming**
 - TBA
@@ -93,6 +99,8 @@ None
 
 # Recommended Reading
 1. Multicore vs. SMP [1](https://software.intel.com/en-us/blogs/2008/04/17/the-difference-between-multi-core-and-multi-processing), [2](http://pediaa.com/difference-between-multicore-and-multiprocessor/)
+2. [Internal Windows Thread.](https://www.codeproject.com/Articles/662735/Internals-of-Windows-Thread)
+
 
 # Grading Rubrics
 ## Professional Conduct
