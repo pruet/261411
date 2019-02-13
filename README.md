@@ -14,24 +14,53 @@ This course introduces the theoretical and practical views of parallel programmi
 3. Some math knowledge (matrix, linear algebra, no calculus)
 4. Basic algorithm and data structure
 
+# Attendance Sheet
+[Please see it here](https://o365cmu-my.sharepoint.com/:x:/g/personal/pruet_b_cmu_ac_th/ETWEX_IxxqxCqQHmZtbYkHsBmfWe0A6hkvfwZDVKAi7zug?e=sliHJV)
+
+# Assignments
+1. HW1 is in elearing.cmu.ac.th
+2. HW2 https://gist.github.com/pruet/07510645b41e8fc549a0996b1ad75250
+
 # Course Topics
 **Week 1: Introduction and state of the art of parallel processing and distributed systems.**
-- TBA
+- Slide: Week 1 Introduction
+- Intro to Parallel, Distributed and Concurrent Computing
+- Parallelism
+- State of the art
+- Class Progress: (7/1/2562) Slide 1 done.
 
 **Week 2: Parallel processing, architectures, paradigms and issues**
-- TBA
+- Slide: Week 2 Paradim and Issues
+- Paradgim
+- Issues
+- Class progress: (10/1/2562 - 14/1/2562) Slide 2 done
 
 **Week 3: Massage passing and shared memory**
-- TBA
+- Slide: Week 3 Message Passing and Shared Memory
+- Shared Memory
+- Threading
+- Synchronization
+- Class progress: (17/1/62) Slide 3 page 1 -19
+- Slide: Week 3 supplement Concurrent with Go
+- Message Passing
+- Go's Channel
+- Class progress: (21/1/62 - 24/1/62) Slide 3, Slide 3 supplement done
 
 **Week 4: Introduction to threading**
-- TBA
+- Thread Class
+- Thread Synchronization
+- Monitor/Lock/Reader,Writer Lock
+- Class progress: (27/1/62 - 31/1/62) Done
 
 **Week 5: Advance threading**
-- TBA
+- Thread with multi-core
+- Issues with multiple-lock
+- Class progress: (27/1/62 - 31/1/62) Done
 
 **Week 6: Operating systems of parallel processing**
-- TBA
+- OS Model
+- Thread Model
+- Thread in Popular OSes
 
 **Week 7: OpenCL Programming**
 - TBA
@@ -65,11 +94,13 @@ This course introduces the theoretical and practical views of parallel programmi
 None
 
 ## Recommended Textbooks
-1. Topics in Parallel and Distributed Computing: Introducing Concurrency in Undergraduate Courses,  Sushil K Prasad (Editor), Anshul Gupta (Editor), Arnold L Rosenberg (Editor), Alan Sussman (Editor), Charles C Weems (Editor), Morgan Kaufmann, 2015
+1. [Topics in Parallel and Distributed Computing: Introducing Concurrency in Undergraduate Courses](https://grid.cs.gsu.edu/~tcpp/curriculum/?q=cedr_book),  Sushil K Prasad (Editor), Anshul Gupta (Editor), Arnold L Rosenberg (Editor), Alan Sussman (Editor), Charles C Weems (Editor), Morgan Kaufmann, 2015
 2. Distributed Systems: Principles and Paradigms, Andrew S. Tanenbaum and Maarten van Steen,  Prentice Hall, 2002
 
-# Required and Recommended Reading
-TBA
+# Recommended Reading
+1. Multicore vs. SMP [1](https://software.intel.com/en-us/blogs/2008/04/17/the-difference-between-multi-core-and-multi-processing), [2](http://pediaa.com/difference-between-multicore-and-multiprocessor/)
+2. [Internal Windows Thread.](https://www.codeproject.com/Articles/662735/Internals-of-Windows-Thread)
+
 
 # Grading Rubrics
 ## Professional Conduct
@@ -87,8 +118,8 @@ We expect our students to conduct themselves professionally, at least, for the f
 
 ## Making Up Missed Classes
 - Whether excused or unexcused absence, missed classes must be made up in order to earn a grade of B or higher for the semester
-- To make up a class, students study the slide, work any in-class exercises on their own, write up an executive summary, and submit the executive summary to the instructor using a Microsoft team on email before the next class meeting start time
-- Executive Summary should be a PDF file, 1 to 1.5 pages in length, professionally formatted,12 point Calibri font, 1 inch margins, 1.08 line spacing
+- To make up a class, students study the slide, work any in-class exercises on their own, write up an executive summary, and submit the executive summary to the instructor using CMU Elearning or email (pruet@eng.cmu.ac.th) before the next class meeting start time
+- Executive Summary should be a PDF file, 1 to 1.5 pages in length, professionally formatted,12 point font.
 
 ## Assignments
 - 8 Assignments, count as 20% toward final score
