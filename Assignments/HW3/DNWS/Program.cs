@@ -291,9 +291,12 @@ namespace DNWS
                     // Multiple threads
                     Thread thread = new Thread(new ThreadStart(hp.Process));
                     thread.Start();
-
                 }
-                catch (Exception ex)
+                catch (ThreadAbortException ex)
+                {
+                    _parent.Log($"Thread Aborted: {ex.Message}");
+                }
+                catch (Exception ex) 
                 {
                     _parent.Log("Server starting error: " + ex.Message + "\n" + ex.StackTrace);
 
