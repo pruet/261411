@@ -5,6 +5,7 @@ using System.Net.Sockets;
 using System.Net;
 using System.IO;
 using Microsoft.Extensions.Configuration;
+using System.Threading;
 
 namespace DNWS
 {
@@ -260,6 +261,11 @@ namespace DNWS
         /// </summary>
         public void Start()
         {
+            List<Thread> threads = new List<Thread>();
+            Console.CancelKeyPress += new ConsoleCancelEventHandler((Object sender, ConsoleCancelEventArgs args) => {
+                args.Cancel = true;
+                threads.FindAll(thread => thread.IsAlive).ForEach(thread => thread.Abort());
+            });
             while (true) {
                 try
                 {
@@ -287,9 +293,22 @@ namespace DNWS
                     // Get one, show some info
                     _parent.Log("Client accepted:" + clientSocket.RemoteEndPoint.ToString());
                     HTTPProcessor hp = new HTTPProcessor(clientSocket, _parent);
+
+                    // Create thread
+                    ThreadStart threadStart = new ThreadStart(hp.Process);
+                    Thread thread = new Thread(threadStart);
+
+                    // Start Thread
+                    try {
+                        thread.Start();
+                        threads.Add(thread);
+                    } catch (ThreadStateException e) {
+                        _parent.Log("Catch Error: " + e.Message);
+                    }
+
                     // Single thread
-                    hp.Process();
-                    // End single therad
+                    // hp.Process();
+                    // End single thread
 
                 }
                 catch (Exception ex)
