@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Collections.Generic;
 using System.Text;
 using System.Net.Sockets;
@@ -287,9 +288,9 @@ namespace DNWS
                     // Get one, show some info
                     _parent.Log("Client accepted:" + clientSocket.RemoteEndPoint.ToString());
                     HTTPProcessor hp = new HTTPProcessor(clientSocket, _parent);
-                    // Single thread
-                    hp.Process();
-                    // End single therad
+                    // Multiple threads
+                    Thread thread = new Thread(new ThreadStart(hp.Process));
+                    thread.Start();
 
                 }
                 catch (Exception ex)
