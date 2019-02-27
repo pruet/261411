@@ -20,7 +20,7 @@ This course introduces the theoretical and practical views of parallel programmi
 # Assignments
 1. HW1 is in elearing.cmu.ac.th
 2. HW2 https://gist.github.com/pruet/07510645b41e8fc549a0996b1ad75250
-2. HW 2 [instruction](https://gist.github.com/pruet/66f3ac1c49a9e561cad9551cf1e90257), due date 28/2/2562. 
+2. HW3 [instruction](https://gist.github.com/pruet/66f3ac1c49a9e561cad9551cf1e90257), due date 28/2/2562. 
 
 # Course Topics
 **Week 1: Introduction and state of the art of parallel processing and distributed systems.**
