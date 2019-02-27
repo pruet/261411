@@ -4,6 +4,7 @@ using System.Text;
 using System.Net.Sockets;
 using System.Net;
 using System.IO;
+using System.Threading;
 using Microsoft.Extensions.Configuration;
 
 namespace DNWS
@@ -288,14 +289,32 @@ namespace DNWS
                     _parent.Log("Client accepted:" + clientSocket.RemoteEndPoint.ToString());
                     HTTPProcessor hp = new HTTPProcessor(clientSocket, _parent);
                     // Single thread
-                    hp.Process();
+                    // hp.Process();
                     // End single therad
-
+                    try
+                    {
+                        // Multi Thread
+                        Thread ChildThread = new Thread(new ThreadStart(hp.Process));
+                        // thread counter
+                        id++;
+                        // log threads and show thier task. 
+                        ChildThread.Name = String.Concat("Thread: ", id, " Task: ", hp); 
+                        _parent.Log(ChildThread.Name);
+                        ChildThread.Start();
+                        // End Multi Thread
+                    }
+                    // Log ThreadAbortException
+                    catch (ThreadAbortException ex)
+                    {
+                        _parent.Log("Thread error" + "\n" + ex.Message + "\n");
+                        _parent.Log("All Threads Abort" + "\n");
+                        // Abort all threads
+                        Thread.ResetAbort();
+                    }
                 }
                 catch (Exception ex)
                 {
                     _parent.Log("Server starting error: " + ex.Message + "\n" + ex.StackTrace);
-
                 }
             }
 
