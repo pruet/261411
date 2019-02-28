@@ -218,7 +218,13 @@ namespace DNWS
             //ns.Close();
             _client.Shutdown(SocketShutdown.Both);
             //_client.Close();
-
+            var threads = DotNetWebServer
+                .GetInstance(Convert.ToInt16(Program.Configuration["Port"]), _parent)
+                .GetThreads;
+                
+            threads.Remove(Thread.CurrentThread.ManagedThreadId);
+            // .NET Core doesn't support Thread.Abort()
+            // Thread.CurrentThread.Abort();
         }
     }
 
@@ -233,7 +239,10 @@ namespace DNWS
         protected Socket clientSocket;
         private static DotNetWebServer _instance = null;
         protected int id;
-
+        private Dictionary<int, Thread> threads = null;
+        public Dictionary<int, Thread> GetThreads{
+            get{return threads;}
+        }
         private DotNetWebServer(int port, Program parent)
         {
             _port = port;
@@ -261,6 +270,7 @@ namespace DNWS
         /// </summary>
         public void Start()
         {
+            threads = new Dictionary<int, Thread>();
             while (true) {
                 try
                 {
@@ -291,6 +301,12 @@ namespace DNWS
                     // Multiple threads
                     Thread thread = new Thread(new ThreadStart(hp.Process));
                     thread.Start();
+                    thread.Name = $"{clientSocket.RemoteEndPoint}";
+                    threads.Add(thread.ManagedThreadId, thread);
+                    // Show active threads
+                    foreach(var t in threads){
+                        _parent.Log($"{t.Key}, {t.Value.Name}");
+                    }
                 }
                 catch (ThreadAbortException ex)
                 {
