@@ -5,6 +5,7 @@ using System.Net.Sockets;
 using System.Net;
 using System.IO;
 using System.Threading;
+using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 
 namespace DNWS
@@ -261,6 +262,7 @@ namespace DNWS
         /// </summary>
         public void Start()
         {
+            List<String> threads = new List<String>();
             while (true) {
                 try
                 {
@@ -291,26 +293,32 @@ namespace DNWS
                     // Single thread
                     // hp.Process();
                     // End single therad
+
+                    // Multi Thread
+                    Thread ChildThread = new Thread(new ThreadStart(hp.Process));
+
                     try
                     {
-                        // Multi Thread
-                        Thread ChildThread = new Thread(new ThreadStart(hp.Process));
                         // thread counter
                         id++;
                         // log threads and show thier task. 
-                        ChildThread.Name = String.Concat("Thread: ", id, " Task: ", hp); 
-                        _parent.Log(ChildThread.Name);
+                        ChildThread.Name = String.Concat("Thread: ", id, " IP/Port: ", clientSocket.RemoteEndPoint.ToString(), " Task: ", hp); 
                         ChildThread.Start();
-                        // End Multi Thread
+
+                        // Monitor Threads
+                        threads.Add(ChildThread.Name);
+                        // Show all threads when new system create a new thread.
+                        // this log shows thread id, thread ip/port and thread task.
+                        foreach (string thread in threads){
+                        _parent.Log(thread);
+                        }
+                        // end monitor threads
                     }
-                    // Log ThreadAbortException
-                    catch (ThreadAbortException ex)
+                    catch (ThreadStateException ex)
                     {
-                        _parent.Log("Thread error" + "\n" + ex.Message + "\n");
-                        _parent.Log("All Threads Abort" + "\n");
-                        // Abort all threads
-                        Thread.ResetAbort();
+                        _parent.Log("Thread error: " + ex.Message);
                     }
+                    // End Multi Thread
                 }
                 catch (Exception ex)
                 {
@@ -319,5 +327,6 @@ namespace DNWS
             }
 
         }
+
     }
 }
