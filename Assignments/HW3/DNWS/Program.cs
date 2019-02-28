@@ -1,10 +1,12 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Net.Sockets;
 using System.Net;
 using System.IO;
 using Microsoft.Extensions.Configuration;
+using System.Threading;
+
 
 namespace DNWS
 {
@@ -152,72 +154,77 @@ namespace DNWS
         /// </summary>
         public void Process()
         {
-            NetworkStream ns = new NetworkStream(_client);
-            string requestStr = "";
-            HTTPRequest request = null;
-            HTTPResponse response = null;
-            byte[] bytes = new byte[1024];
-            int bytesRead;
+	        try{
+	            NetworkStream ns = new NetworkStream(_client);
+	            string requestStr = "";
+	            HTTPRequest request = null;
+	            HTTPResponse response = null;
+	            byte[] bytes = new byte[1024];
+	            int bytesRead;
 
-            // Read all request
-            do
-            {
-                bytesRead = ns.Read(bytes, 0, bytes.Length);
-                requestStr += Encoding.UTF8.GetString(bytes, 0, bytesRead);
-            } while (ns.DataAvailable);
+	            // Read all request
+	            do
+	            {
+	                bytesRead = ns.Read(bytes, 0, bytes.Length);
+	                requestStr += Encoding.UTF8.GetString(bytes, 0, bytesRead);
+	            } while (ns.DataAvailable);
 
-            request = new HTTPRequest(requestStr);
-            request.addProperty("RemoteEndPoint", _client.RemoteEndPoint.ToString());
+	            request = new HTTPRequest(requestStr);
+	            request.addProperty("RemoteEndPoint", _client.RemoteEndPoint.ToString());
 
-            // We can handle only GET now
-            if(request.Status != 200) {
-                response = new HTTPResponse(request.Status);
-            }
-            else
-            {
-                bool processed = false;
-                // pre processing
-                foreach(KeyValuePair<string, PluginInfo> plugininfo in plugins) {
-                    if(plugininfo.Value.preprocessing) {
-                        plugininfo.Value.reference.PreProcessing(request);
-                    }
-                }
-                // plugins
-                foreach(KeyValuePair<string, PluginInfo> plugininfo in plugins) {
-                    if(request.Filename.StartsWith(plugininfo.Key)) {
-                        response = plugininfo.Value.reference.GetResponse(request);
-                        processed = true;
-                    }
-                }
-                // local file
-                if(!processed) {
-                    if (request.Filename.Equals(""))
-                    {
-                        response = getFile(ROOT + "/index.html");
-                    }
-                    else
-                    {
-                        response = getFile(ROOT + "/" + request.Filename);
-                    }
-                }
-                // post processing pipe
-                foreach(KeyValuePair<string, PluginInfo> plugininfo in plugins) {
-                    if(plugininfo.Value.postprocessing) {
-                        response = plugininfo.Value.reference.PostProcessing(response);
-                    }
-                }
-            }
-            // Generate response
-            ns.Write(Encoding.UTF8.GetBytes(response.header), 0, response.header.Length);
-            if(response.body != null) {
-              ns.Write(response.body, 0, response.body.Length);
-            }
+	            // We can handle only GET now
+	            if(request.Status != 200) {
+	                response = new HTTPResponse(request.Status);
+	            }
+	            else
+	            {
+	                bool processed = false;
+	                // pre processing
+	                foreach(KeyValuePair<string, PluginInfo> plugininfo in plugins) {
+	                    if(plugininfo.Value.preprocessing) {
+	                        plugininfo.Value.reference.PreProcessing(request);
+	                    }
+	                }
+	                // plugins
+	                foreach(KeyValuePair<string, PluginInfo> plugininfo in plugins) {
+	                    if(request.Filename.StartsWith(plugininfo.Key)) {
+	                        response = plugininfo.Value.reference.GetResponse(request);
+	                        processed = true;
+	                    }
+	                }
+	                // local file
+	                if(!processed) {
+	                    if (request.Filename.Equals(""))
+	                    {
+	                        response = getFile(ROOT + "/index.html");
+	                    }
+	                    else
+	                    {
+	                        response = getFile(ROOT + "/" + request.Filename);
+	                    }
+	                }
+	                // post processing pipe
+	                foreach(KeyValuePair<string, PluginInfo> plugininfo in plugins) {
+	                    if(plugininfo.Value.postprocessing) {
+	                        response = plugininfo.Value.reference.PostProcessing(response);
+	                    }
+	                }
+	            }
+	            // Generate response
+	            ns.Write(Encoding.UTF8.GetBytes(response.header), 0, response.header.Length);
+	            if(response.body != null) {
+	              ns.Write(response.body, 0, response.body.Length);
+	            }
 
-            // Shuting down
-            //ns.Close();
-            _client.Shutdown(SocketShutdown.Both);
-            //_client.Close();
-
+	            // Shuting down
+	            //ns.Close();
+	            _client.Shutdown(SocketShutdown.Both);
+	            //_client.Close();
+	        } catch (ThreadAbortException e) {
+            	Console.WriteLine("Thread Abort Exception");
+         	} finally {
+            	Console.WriteLine("Couldn't catch the Thread Exception");
+         	}
         }
     }
 
@@ -260,6 +267,7 @@ namespace DNWS
         /// </summary>
         public void Start()
         {
+        	List<Thread> Threadlist = new List<Thread>();
             while (true) {
                 try
                 {
@@ -288,8 +296,11 @@ namespace DNWS
                     _parent.Log("Client accepted:" + clientSocket.RemoteEndPoint.ToString());
                     HTTPProcessor hp = new HTTPProcessor(clientSocket, _parent);
                     // Single thread
-                    hp.Process();
+                    //hp.Process();
                     // End single therad
+
+                    Threadlist.Add(new Thread(() => hp.Process()));
+         			Threadlist[Threadlist.Count].Start();
 
                 }
                 catch (Exception ex)
