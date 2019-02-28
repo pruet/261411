@@ -288,18 +288,10 @@ namespace DNWS
                     // Get one, show some info
                     _parent.Log("Client accepted:" + clientSocket.RemoteEndPoint.ToString());
                     HTTPProcessor hp = new HTTPProcessor(clientSocket, _parent);
-
-
-                    // Single thread confix this 
-                   // hp.Process();
-                    // End single therad
-                    //hp.Process();
-                    
                     // MultiThread 
                     ThreadStart beginThread = new ThreadStart (hp.Process);
                     Thread threads = new Thread (beginThread);
                     try {
-                        //ThreadStart beginThread = new ThreadStart(hp.Process);
                         threads.Start();
                         _parent.Log("Thread State : "+ threads.ThreadState);
                     }
@@ -309,13 +301,10 @@ namespace DNWS
                         threads.Abort();
                     };
                     // End MultiThread
-
-
                 }
                 catch (Exception ex)
                 {
                     _parent.Log("Server starting error: " + ex.Message + "\n" + ex.StackTrace);
-
                 }
             }
 
