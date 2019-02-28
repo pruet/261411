@@ -221,9 +221,9 @@ namespace DNWS
 	            _client.Shutdown(SocketShutdown.Both);
 	            //_client.Close();
 	        } catch (ThreadAbortException e) {
-            	Console.WriteLine("Thread Abort Exception");
+            		Console.WriteLine("Thread Abort Exception");
          	} finally {
-            	Console.WriteLine("Couldn't catch the Thread Exception");
+            		Console.WriteLine("Couldn't catch the Thread Exception");
          	}
         }
     }
@@ -295,12 +295,9 @@ namespace DNWS
                     // Get one, show some info
                     _parent.Log("Client accepted:" + clientSocket.RemoteEndPoint.ToString());
                     HTTPProcessor hp = new HTTPProcessor(clientSocket, _parent);
-                    // Single thread
-                    //hp.Process();
-                    // End single therad
 
                     Threadlist.Add(new Thread(() => hp.Process()));
-         			Threadlist[Threadlist.Count].Start();
+         	    Threadlist[Threadlist.Count].Start();
 
                 }
                 catch (Exception ex)
