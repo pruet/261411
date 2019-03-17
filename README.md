@@ -62,32 +62,37 @@ This course introduces the theoretical and practical views of parallel programmi
 - OS Model
 - Thread Model
 - Thread in Popular OSes
+- Class Progress: (7/2/62) Done
 
-**Week 7: OpenCL Programming**
-- TBA
+**Week 7: Parallel Algorithm**
+- Class Progress: (18/2/62) Done
+
+**Week 8: OpenCL Programming**
+- OpenCL + TensorFlow
+- Class Progress: (7/3/62) Done
 
 **Midterm exam**
+- March 8, 2019, 12:00-15:00
+
+**Week 9: Distributed systems, architectures, paradigms and issues**
 - TBA
 
-**Week 8: Distributed systems, architectures, paradigms and issues**
+**Week 10: Tier architecture**
 - TBA
 
-**Week 9: Tier architecture**
+**Week 11: Hadoop**
 - TBA
 
-**Week 10: Hadoop**
+**Week 12: Docker and microservice, part 1**
 - TBA
 
-**Week 11: Docker and microservice, part 1**
+**Week 13: Docker and microservice, part 2**
 - TBA
 
-**Week 12: Docker and microservice, part 2**
+**Week 14: Peer-to-peer archiecture**
 - TBA
 
-**Week 13: Peer-to-peer archiecture**
-- TBA
-
-**Week 14: Cloud computing**
+**Week 15: Cloud computing**
 - TBA
 
 # Required and Recommended Textbooks
