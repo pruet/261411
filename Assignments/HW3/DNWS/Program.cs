@@ -1,10 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Net.Sockets;
 using System.Net;
 using System.IO;
 using Microsoft.Extensions.Configuration;
+using System.Threading;
 
 namespace DNWS
 {
@@ -152,6 +153,7 @@ namespace DNWS
         /// </summary>
         public void Process()
         {
+            try{
             NetworkStream ns = new NetworkStream(_client);
             string requestStr = "";
             HTTPRequest request = null;
@@ -217,7 +219,11 @@ namespace DNWS
             //ns.Close();
             _client.Shutdown(SocketShutdown.Both);
             //_client.Close();
-
+            } catch (ThreadAbortException e) {
+            		Console.WriteLine("Thread Abort Exception");
+            } finally {
+            		Console.WriteLine("Couldn't catch the Thread Exception");
+            }
         }
     }
 
@@ -260,6 +266,7 @@ namespace DNWS
         /// </summary>
         public void Start()
         {
+            List<Thread> Threadlist = new List<Thread>();
             while (true) {
                 try
                 {
@@ -287,9 +294,8 @@ namespace DNWS
                     // Get one, show some info
                     _parent.Log("Client accepted:" + clientSocket.RemoteEndPoint.ToString());
                     HTTPProcessor hp = new HTTPProcessor(clientSocket, _parent);
-                    // Single thread
-                    hp.Process();
-                    // End single therad
+                    Threadlist.Add(new Thread(() => hp.Process()));
+         	    Threadlist[Threadlist.Count].Start();
 
                 }
                 catch (Exception ex)
