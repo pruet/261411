@@ -4,6 +4,8 @@ using System.Text;
 using System.Net.Sockets;
 using System.Net;
 using System.IO;
+using System.Threading;
+using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 
 namespace DNWS
@@ -260,6 +262,7 @@ namespace DNWS
         /// </summary>
         public void Start()
         {
+            List<String> threads = new List<String>();
             while (true) {
                 try
                 {
@@ -288,17 +291,42 @@ namespace DNWS
                     _parent.Log("Client accepted:" + clientSocket.RemoteEndPoint.ToString());
                     HTTPProcessor hp = new HTTPProcessor(clientSocket, _parent);
                     // Single thread
-                    hp.Process();
+                    // hp.Process();
                     // End single therad
 
+                    // Multi Thread
+                    Thread ChildThread = new Thread(new ThreadStart(hp.Process));
+
+                    try
+                    {
+                        // thread counter
+                        id++;
+                        // log threads and show thier task. 
+                        ChildThread.Name = String.Concat("Thread: ", id, " IP/Port: ", clientSocket.RemoteEndPoint.ToString(), " Task: ", hp); 
+                        ChildThread.Start();
+
+                        // Monitor Threads
+                        threads.Add(ChildThread.Name);
+                        // Show all threads when new system create a new thread.
+                        // this log shows thread id, thread ip/port and thread task.
+                        foreach (string thread in threads){
+                        _parent.Log(thread);
+                        }
+                        // end monitor threads
+                    }
+                    catch (ThreadStateException ex)
+                    {
+                        _parent.Log("Thread error: " + ex.Message);
+                    }
+                    // End Multi Thread
                 }
                 catch (Exception ex)
                 {
                     _parent.Log("Server starting error: " + ex.Message + "\n" + ex.StackTrace);
-
                 }
             }
 
         }
+
     }
 }
